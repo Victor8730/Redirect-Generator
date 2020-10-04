@@ -1,0 +1,57 @@
+
+2020-09-23 12:03:18 : Script with problem: C:\os\domains\kml\application\Core\Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerExampleXml.php' not exist!
+2020-09-23 18:55:15 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 18:55:45 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 18:56:48 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 18:57:34 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 18:58:16 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 18:59:01 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:06:12 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:06:53 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:08:29 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:09:23 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerExamplecsv.php' not exist!
+2020-09-23 19:09:27 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:10:50 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:10:52 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:11:42 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:16:17 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:16:33 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:17:10 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:17:11 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:17:12 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:17:12 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-23 19:35:52 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 137 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-24 08:27:11 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 152 | Method actionExmaplecsv not exist in controller Controllers\ControllerMain
+2020-09-24 10:31:14 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 154 | Method actionExample not exist in controller Controllers\ControllerMain
+2020-09-24 14:07:18 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 154 | Method actionExamplexml%D1%84%D1%86%D0%B2%D1%84%D1%86%D0%B2 not exist in controller Controllers\ControllerMain
+2020-09-24 14:10:00 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 154 | Method actionExamplexmlфцвфцв not exist in controller Controllers\ControllerMain
+2020-09-24 14:44:23 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplexmlфцвфцв not exist in controller Controllers\ControllerMain
+2020-09-24 14:44:23 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplexmlфцвфцв not exist in controller Controllers\ControllerMain
+2020-09-24 14:44:31 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplexmlфцвфцв not exist in controller Controllers\ControllerMain
+2020-09-24 14:44:31 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplexml%D1%84%D1%86%D0%B2%D1%84%D1%86%D0%B2 not exist in controller Controllers\ControllerMain
+2020-09-24 14:45:32 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplexml%D1%84%D1%86%D0%B2%D1%84%D1%86%D0%B2 not exist in controller Controllers\ControllerMain
+2020-09-24 14:47:40 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplexmlфцвфцв not exist in controller Controllers\ControllerMain
+2020-09-24 14:47:50 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExampleCsvddddd not exist in controller Controllers\ControllerMain
+2020-09-24 14:50:56 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExampleCsvddddd not exist in controller Controllers\ControllerMain
+2020-09-24 15:19:48 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExampleXmldddd not exist in controller Controllers\ControllerMain
+2020-09-24 15:27:23 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplexmlфцвфцв not exist in controller Controllers\ControllerMain
+2020-09-24 15:28:48 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplexmlфцвфцв not exist in controller Controllers\ControllerMain
+2020-09-24 15:35:12 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplexml1 not exist in controller Controllers\ControllerMain
+2020-09-24 15:40:20 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 155 | Method actionExamplecsv1 not exist in controller Controllers\ControllerMain
+2020-09-24 16:17:36 : Script with problem: C:\os\domains\kml\application\Core\Validator.php | Line with problem: 159 | Method actionExamplexmldddd not exist in controller Controllers\ControllerMain
+2020-09-27 13:54:09 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 144 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-27 13:54:13 : Script with problem: /var/www/kml-generator-docker/application/Core/Validator.php Line with problem: 144 | file template 'application/Controllers/ControllerFavicon.ico.php' not exist!
+2020-09-27 21:41:21 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 211 | The data received from the url is incorrect, check the data
+2020-09-27 21:47:23 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 211 | The data received from the url is incorrect, check the data
+2020-09-27 21:49:17 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 242 | The data received from the url is incorrect, check the data
+2020-09-27 21:49:22 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 243 | The data received from the url is incorrect, check the data
+2020-09-29 11:01:09 : Script with problem: D:\server20\domains\KML-Generator\application\Core\Validator.php | Line with problem: 159 | Method actionExampleCsv1 not exist in controller Controllers\ControllerMain
+2020-09-29 11:18:26 : Script with problem: D:\server20\domains\KML-Generator\application\Core\Validator.php | Line with problem: 159 | Method actionExampleCsv1 not exist in controller Controllers\ControllerMain
+2020-09-29 11:19:31 : Script with problem: D:\server20\domains\KML-Generator\application\Core\Validator.php | Line with problem: 159 | Method actionExampleCsv1 not exist in controller Controllers\ControllerMain
+2020-09-29 11:19:47 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 241 | The data received from the url is incorrect, check the data
+2020-09-29 11:21:55 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 227 | The data received from the url is incorrect, check the data
+2020-09-29 11:23:25 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 227 | The data received from the url is incorrect, check the data
+2020-09-29 11:23:31 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 227 | The data received from the url is incorrect, check the data
+2020-09-29 11:39:32 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 227 | The data received from the url is incorrect, check the data
+2020-09-29 11:47:11 : Script with problem: D:\server20\domains\KML-Generator\application\Controllers\ControllerMain.php | Line with problem: 227 | The data received from the url is incorrect, check the data
+2020-09-29 12:24:05 : Script with problem: D:\server20\domains\KML-Generator\application\Core\Validator.php | Line with problem: 159 | Method actionExampleCsv1 not exist in controller Controllers\ControllerMain

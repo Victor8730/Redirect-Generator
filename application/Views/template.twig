@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Task List">
+    <meta name="author" content="Victor Galiuzov">
+    <link rel="icon" href="/img/favicon.ico">
+    <title>Redirect generator</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/form-validation.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<header>
+    <div class="bg-dark collapse" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 py-2">
+                    <h4 class="text-white">Redirect 301 generator</h4>
+                    <ul>
+                        <li class="text-white">Designed to generate google maps import files</li>
+                        <li class="text-white">To create a kml file, you need to pass a link to the data, the data can
+                            be either in csv or xml format.
+                        </li>
+                        <li class="text-white">An example of input data can be found on the links <a
+                                    href="/main/examplecsv" target="_blank">csv</a>, <a href="/main/examplexml" target="_blank">xml</a></li>
+                        <li class="text-white">If your input data has more fields, then you can configure the formation
+                            of the array in the corresponding "createArrayFromCsv", "createArrayFromXml" method in the
+                            "ControllerMain". Also, do not forget to fix the template, it is located at "kml/desc.twig"
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+            <a href="/" class="navbar-toggler" title="Show all task">
+                <i class="fa fa-list fa-2x" aria-hidden="true"></i>
+            </a>
+            <button class="navbar-toggler tooltip-show" type="button" title="Show info" data-toggle="collapse"
+                    data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="true"
+                    aria-label="Toggle navigation">
+                <i class="fa fa-info-circle fa-2x mr-4" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="col-md-12 my-1">
+        <div class="info-block" style="height: 50px;">
+
+        </div>
+    </div>
+    <div class="py-3 text-center">
+        <img class="d-block mx-auto mb-2" src="/img/redirect.png" alt="Redirect generator" width="200" height="200">
+        <h2>Redirect generator</h2>
+    </div>
+
+    <div class="row content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2020 Webpagestudio</p>
+        <ul class="list-group list-group-horizontal d-inline-flex">
+            <li class="list-group-item"><a href="/" class="text-info">Home</a></li>
+            <li class="list-group-item"><a href="/main/examplecsv" class="text-info" target="_blank">Example Csv</a></li>
+            <li class="list-group-item"><a href="/main/examplexml" class="text-info" target="_blank">Example Xml</a></li>
+        </ul>
+    </footer>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            let forms = document.getElementsByClassName('needs-validation');
+            let validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+    $(function () {
+        $('[data-toggle="tooltip"],.tooltip-show').tooltip({'placement': 'bottom'});
+    });
+    function showAlert(message, type) {
+        $('.info-block').append('<div class="alert alert-' + type + '" role="alert">' + message + '</div>');
+        setTimeout(function () {
+            $(".alert").alert('close');
+        }, 3000);
+    }
+    $(".check-data").on('click', function () {
+        event.preventDefault();
+        let data = $('.form-generate').serialize();
+        $.ajax({
+            type: "POST",
+            url: 'main/generate',
+            data: data,
+            dataType: 'json',
+            success: function (answer) {
+               (answer['success'] === true) ? showAlert(answer['message'], 'success') : showAlert(answer['message'], 'danger');
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "name": "webpagestudio/redirect-generator",
+  "description": "Create 301 redirect from xml site maps",
+  "minimum-stability": "stable",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Victor Galiuzov"
+    }
+  ],
+  "config": {
+    "vendor-dir": "application/vendor"
+  },
+  "require": {
+    "php": ">=7.4.0",
+    "twig/twig": "^3.0",
+    "twbs/bootstrap": "^4.5.2",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "ext-dom": "*",
+    "ext-simplexml": "*",
+    "ext-libxml": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "application/Core",
+      "Exceptions\\": "application/Exceptions",
+      "Controllers\\": "application/Controllers",
+      "Tests\\": "application/Tests"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~9.3.8"
+  }
+}
