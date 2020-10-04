@@ -30,14 +30,6 @@ class ControllerMain extends Controller
     }
 
     /**
-     * Show page with example data csv
-     */
-    public function actionExampleCsv(): void
-    {
-        echo $this->exampleCsv();
-    }
-
-    /**
      * Show page with example xml data
      */
     public function actionExampleXml(): void
@@ -53,25 +45,26 @@ class ControllerMain extends Controller
     {
         $strOutside = $this->validate();
         $dataFromUrl = $this->getDataFromUrl($strOutside);
-        $data = $res =  null;
+
+        $result = 'RewriteEngine On'. "\n";
 
         if (!empty($dataFromUrl)) {
-            $data = $this->createArrayFromXml($dataFromUrl);
+            $oldDomains = $dataFromUrl->url->loc[0];
+            foreach ($dataFromUrl->url as $item) {
+                $newUrl = str_replace($oldDomains, $strOutside['domains'], $item->loc);
+                $result .= 'Redirect 301 ' . $item->loc . ' ' . $newUrl . "\n";
+            }
         } else {
             $this->isAjax ? $this->ajaxResponse(false, 'Url not exist, check url!') : Route::errorPage404();
         }
 
-        foreach ($data as $item){
-            $res = '';
-        }
-
-        header('Content-type: text/html; charset=utf-8');
-        header('Content-disposition: attachment; filename=Redirect301_' . date("Ymd_His") . '.txt');
+         header('Content-type: text/html; charset=utf-8');
+         header('Content-disposition: attachment; filename=Redirect301_' . date("Ymd_His") . '.txt');
 
         if ($this->isAjax) {
             $this->ajaxResponse(true, 'It’s ok!');
         } else {
-            echo $data;
+            echo $result;
         }
     }
 
@@ -106,7 +99,7 @@ class ControllerMain extends Controller
      * @param array $dataOutside
      * @return false|\SimpleXMLElement|string[]
      */
-    public function getDataFromUrl(array $dataOutside)
+    private function getDataFromUrl(array $dataOutside)
     {
         try {
             $this->validator->checkFileExistFromUrl($dataOutside['url']);
@@ -117,25 +110,6 @@ class ControllerMain extends Controller
         }
 
         return $rowsFromFile;
-    }
-
-    /**
-     * Create array from xml data
-     * @param object $dataFromUrl
-     * @return array
-     */
-    public function createArrayFromXml(object $dataFromUrl): ?array
-    {
-        $array = [];
-        foreach ($dataFromUrl->url as $key=>$item) {
-            if (!empty($item)) {
-                $array[$key]['loc'] = $this->trimSpecialCharacters((string)$item->loc);
-                $array[$key]['lastmod'] = (string)$item->lastmod;
-                $array[$key]['priority'] = (string)$item->priority;
-            }
-        }
-
-        return $array;
     }
 
     /**
@@ -158,13 +132,15 @@ class ControllerMain extends Controller
     {
         $exampleUrl = 'http://' . $_SERVER['SERVER_NAME'] . '/main/examplesitemaps';
         $urlData = (isset($_POST['url-data']) && !empty($_POST['url-data'])) ? $_POST['url-data'] : $exampleUrl;
+        $newDomains = $_POST['new-domains'] ?? 'https://webpagestudio.net';
 
         try {
             $urlData = $this->validator->checkStr($urlData);
+            $newDomains = $this->validator->checkStr($newDomains);
         } catch (NotValidInputException $e) {
             echo $e->getMessage();
         }
 
-        return ['url' => $urlData];
+        return ['url' => $urlData, 'domains' => $newDomains];
     }
 }
