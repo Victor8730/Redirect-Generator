@@ -11,5 +11,6 @@ Creating a 301 redirect from the sitemap to new domains:
 - Clone this app and run composer update
 - On the main page there is a line for entering a link where the data is located. 
 Enter the link.
+- Enter the address of the new domain
 - Below is a button to generate redirect. 
-Click on the button, if the link is not entered, a file with default data is created.
+Click on the button, if the link sitemap is not entered, a file with default data is created.

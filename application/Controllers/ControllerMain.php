@@ -39,27 +39,28 @@ class ControllerMain extends Controller
 
     /**
      * If ajax is a request, then we will return a json response
-     * Else generate kml file
+     * Else generate redirect file
      */
     public function actionGenerate(): void
     {
         $strOutside = $this->validate();
         $dataFromUrl = $this->getDataFromUrl($strOutside);
 
-        $result = 'RewriteEngine On'. "\n";
+        $result = 'RewriteEngine On' . "\n";
 
         if (!empty($dataFromUrl)) {
             $oldDomains = $dataFromUrl->url->loc[0];
             foreach ($dataFromUrl->url as $item) {
+                $oldUrl = str_replace($oldDomains, '', $item->loc);
                 $newUrl = str_replace($oldDomains, $strOutside['domains'], $item->loc);
-                $result .= 'Redirect 301 ' . $item->loc . ' ' . $newUrl . "\n";
+                $result .= 'Redirect 301 /' . $oldUrl . ' ' . $newUrl . "\n";
             }
         } else {
             $this->isAjax ? $this->ajaxResponse(false, 'Url not exist, check url!') : Route::errorPage404();
         }
 
-         header('Content-type: text/html; charset=utf-8');
-         header('Content-disposition: attachment; filename=Redirect301_' . date("Ymd_His") . '.txt');
+        header('Content-type: text/html; charset=utf-8');
+        header('Content-disposition: attachment; filename=Redirect301_' . date("Ymd_His") . '.txt');
 
         if ($this->isAjax) {
             $this->ajaxResponse(true, 'It’s ok!');
@@ -78,16 +79,14 @@ class ControllerMain extends Controller
         $dom->encoding = 'utf-8';
         $dom->xmlVersion = '1.0';
         $dom->formatOutput = true;
-        $root = $dom->createElement('document');
-        $movie_node = $dom->createElement('station');
-        $child_node_title = $dom->createElement('id', '1');
+        $root = $dom->createElement('urlset');
+        $movie_node = $dom->createElement('url');
+        $child_node_title = $dom->createElement('loc', 'https://site.com/testurlforexample');
         $movie_node->appendChild($child_node_title);
-        $child_node_year = $dom->createElement('name', 'Dnepr');
+        $child_node_year = $dom->createElement('lastmod', '2018-09-25T18:03:49+01:00');
         $movie_node->appendChild($child_node_year);
-        $childNodeLng = $dom->createElement('lng', '35.021489');
+        $childNodeLng = $dom->createElement('priority', '1');
         $movie_node->appendChild($childNodeLng);
-        $childNodeLat = $dom->createElement('lat', '48.4786954');
-        $movie_node->appendChild($childNodeLat);
         $root->appendChild($movie_node);
         $dom->appendChild($root);
 
@@ -130,7 +129,7 @@ class ControllerMain extends Controller
      */
     private function validate(): array
     {
-        $exampleUrl = 'http://' . $_SERVER['SERVER_NAME'] . '/main/examplesitemaps';
+        $exampleUrl = 'http://' . $_SERVER['SERVER_NAME'] . '/main/examplexml';
         $urlData = (isset($_POST['url-data']) && !empty($_POST['url-data'])) ? $_POST['url-data'] : $exampleUrl;
         $newDomains = $_POST['new-domains'] ?? 'https://webpagestudio.net';
 
