@@ -5,7 +5,25 @@
             <form action="/main/generate" method="post" class="my-2 form-redirect">
                 <div class="input-group px-4 py-2">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-share-alt pr-2" aria-hidden="true"></i>Sitemap url</span>
+                        <span class="input-group-text"><i class="fa fa-bars pr-2" aria-hidden="true"></i>Select type of input</span>
+                    </div>
+                    <select name="type" class="form-control">
+                        <option value="1">Xml - site map</option>
+                        <option value="2">Csv - file with ;</option>
+                    </select>
+                </div>
+                <div class="input-group px-4 py-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-bars pr-2" aria-hidden="true"></i>Select type of output redirect</span>
+                    </div>
+                    <select name="type-redirect" class="form-control">
+                        <option value="1">RewriteRule [L]</option>
+                        <option value="2">Redirect 301</option>
+                    </select>
+                </div>
+                <div class="input-group px-4 py-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-share-alt pr-2" aria-hidden="true"></i>Dara url</span>
                     </div>
                     <input type="text" name="url-data" id="url-data" class="form-control" placeholder="Url with xml data, for example https://site.com/site-map.xml" aria-describedby="url-data">
                 </div>

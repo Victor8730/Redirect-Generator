@@ -44,19 +44,32 @@ class ControllerMain extends Controller
     public function actionGenerate(): void
     {
         $strOutside = $this->validate();
-        $dataFromUrl = $this->getDataFromUrl($strOutside);
+        $dataFromUrl = $this->getDataFromUrl($strOutside, $strOutside['type']);
 
         $result = 'RewriteEngine On' . "\n";
 
-        if (!empty($dataFromUrl)) {
-            $oldDomains = $dataFromUrl->url->loc[0];
-            foreach ($dataFromUrl->url as $item) {
-                $oldUrl = str_replace($oldDomains, '', $item->loc);
-                $newUrl = str_replace($oldDomains, $strOutside['domains'], $item->loc);
-                $result .= 'Redirect 301 /' . $oldUrl . ' ' . $newUrl . "\n";
+        if ($strOutside['type'] == 1) {
+
+            if (!empty($dataFromUrl)) {
+                $oldDomains = $dataFromUrl->url->loc[0];
+                foreach ($dataFromUrl->url as $item) {
+                    $oldUrl = str_replace($oldDomains, '', $item->loc);
+                    $newUrl = str_replace($oldDomains, $strOutside['domains'], $item->loc);
+                    $result .= ($strOutside['type-redirect'] === 1) ? 'RewriteRule ^' . $$oldUrl. ' ' . $newUrl. "\n" : 'Redirect 301 /' . $oldUrl . ' ' . $newUrl . "\n";
+                }
+            } else {
+                $this->isAjax ? $this->ajaxResponse(false, 'Url not exist, check url!') : Route::errorPage404();
             }
         } else {
-            $this->isAjax ? $this->ajaxResponse(false, 'Url not exist, check url!') : Route::errorPage404();
+
+            if(($handle = fopen($dataFromUrl, "r")) !== FALSE){
+                while (($data = fgetcsv($handle, 10000, ";")) !== FALSE) {
+                    $oldUrl = parse_url($data[0]);
+                    $newUrl = parse_url($data[1]);
+                    $result .= ($strOutside['type-redirect'] === 1) ? 'RewriteRule ^' . $oldUrl['path'] . ' ' . $newUrl['path'] .' [L]'. "\n" : 'Redirect 301 /' . $oldUrl['path'] . ' ' . $newUrl['path'] . "\n";
+                }
+                fclose($handle);
+            }
         }
 
         header('Content-type: text/html; charset=utf-8');
@@ -96,14 +109,15 @@ class ControllerMain extends Controller
     /**
      * Get data
      * @param array $dataOutside
+     * @param int $type
      * @return false|\SimpleXMLElement|string[]
      */
-    private function getDataFromUrl(array $dataOutside)
+    private function getDataFromUrl(array $dataOutside, int $type)
     {
         try {
             $this->validator->checkFileExistFromUrl($dataOutside['url']);
             libxml_use_internal_errors(true);
-            $rowsFromFile = simplexml_load_file($dataOutside['url']);
+            $rowsFromFile = ($type === 1) ? simplexml_load_file($dataOutside['url']) : $dataOutside['url'];
         } catch (NotExistFileFromUrlException $e) {
             return null;
         }
@@ -132,6 +146,8 @@ class ControllerMain extends Controller
         $exampleUrl = 'http://' . $_SERVER['SERVER_NAME'] . '/main/examplexml';
         $urlData = (isset($_POST['url-data']) && !empty($_POST['url-data'])) ? $_POST['url-data'] : $exampleUrl;
         $newDomains = $_POST['new-domains'] ?? 'https://webpagestudio.net';
+        $type = (int)$_POST['type'] ?? '1';
+        $typeRedirect = (int)$_POST['type-redirect'] ?? '1';
 
         try {
             $urlData = $this->validator->checkStr($urlData);
@@ -140,6 +156,6 @@ class ControllerMain extends Controller
             echo $e->getMessage();
         }
 
-        return ['url' => $urlData, 'domains' => $newDomains];
+        return ['url' => $urlData, 'domains' => $newDomains, 'type' => $type, 'type-redirect' => $typeRedirect];
     }
 }
