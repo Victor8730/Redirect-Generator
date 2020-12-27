@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace Core;
 
-class Base implements face\Base
-{
-    protected const VERSION = '1.0.0';
 
+class Base
+{
+    /**
+     * Application version
+     */
+    protected const VERSION = '1.1.0';
+
+    /**
+     * Application path root
+     */
     protected const PATH_ROOT = __DIR__ . '/../..';
 
     /**
@@ -41,13 +48,13 @@ class Base implements face\Base
     protected const PATH_TESTS = 'Tests';
 
     /**
-     * @var Validator|object
+     * Get model
+     * @var object
      */
-    protected object $validator;
+    protected object $model;
 
     public function __construct()
     {
-        $this->validator = new Validator();
+        $this->model = new Model();
     }
-
 }

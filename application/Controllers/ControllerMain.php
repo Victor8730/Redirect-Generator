@@ -7,7 +7,6 @@ namespace Controllers;
 use Core\Controller;
 use Core\Route;
 use Exceptions\NotExistFileFromUrlException;
-use Exceptions\NotValidDataFromUrlException;
 use Exceptions\NotValidInputException;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -55,7 +54,7 @@ class ControllerMain extends Controller
                 foreach ($dataFromUrl->url as $item) {
                     $oldUrl = str_replace($oldDomains, '', $item->loc);
                     $newUrl = str_replace($oldDomains, $strOutside['domains'], $item->loc);
-                    $result .= ($strOutside['type-redirect'] === 1) ? 'RewriteRule ^' . $$oldUrl. ' ' . $newUrl. "\n" : 'Redirect 301 /' . $oldUrl . ' ' . $newUrl . "\n";
+                    $result .= $this->getType($oldUrl['path'],$newUrl['path'] ,$strOutside['type-redirect']);
                 }
             } else {
                 $this->isAjax ? $this->ajaxResponse(false, 'Url not exist, check url!') : Route::errorPage404();
@@ -66,7 +65,7 @@ class ControllerMain extends Controller
                 while (($data = fgetcsv($handle, 10000, ";")) !== FALSE) {
                     $oldUrl = parse_url($data[0]);
                     $newUrl = parse_url($data[1]);
-                    $result .= ($strOutside['type-redirect'] === 1) ? 'RewriteRule ^' . $oldUrl['path'] . ' ' . $newUrl['path'] .' [L]'. "\n" : 'Redirect 301 /' . $oldUrl['path'] . ' ' . $newUrl['path'] . "\n";
+                    $result .= $this->getType($oldUrl['path'],$newUrl['path'] ,$strOutside['type-redirect']);
                 }
                 fclose($handle);
             }
@@ -115,7 +114,7 @@ class ControllerMain extends Controller
     private function getDataFromUrl(array $dataOutside, int $type)
     {
         try {
-            $this->validator->checkFileExistFromUrl($dataOutside['url']);
+            $this->model->validator->checkFileExistFromUrl($dataOutside['url']);
             libxml_use_internal_errors(true);
             $rowsFromFile = ($type === 1) ? simplexml_load_file($dataOutside['url']) : $dataOutside['url'];
         } catch (NotExistFileFromUrlException $e) {
@@ -146,16 +145,20 @@ class ControllerMain extends Controller
         $exampleUrl = 'http://' . $_SERVER['SERVER_NAME'] . '/main/examplexml';
         $urlData = (isset($_POST['url-data']) && !empty($_POST['url-data'])) ? $_POST['url-data'] : $exampleUrl;
         $newDomains = $_POST['new-domains'] ?? 'https://webpagestudio.net';
-        $type = (int)$_POST['type'] ?? '1';
+        $type = (int)$_POST['type-input-data'] ?? '1';
         $typeRedirect = (int)$_POST['type-redirect'] ?? '1';
 
         try {
-            $urlData = $this->validator->checkStr($urlData);
-            $newDomains = $this->validator->checkStr($newDomains);
+            $urlData = $this->model->validator->checkStr($urlData);
+            $newDomains = $this->model->validator->checkStr($newDomains);
         } catch (NotValidInputException $e) {
             echo $e->getMessage();
         }
 
         return ['url' => $urlData, 'domains' => $newDomains, 'type' => $type, 'type-redirect' => $typeRedirect];
+    }
+
+    private function getType(string $from,string $to,int $type):string{
+        return ($type === 1) ? 'RewriteRule ^' . $from . ' ' . $to .' [L]'. "\n" : 'Redirect 301 /' . $from . ' ' . $to . "\n";
     }
 }

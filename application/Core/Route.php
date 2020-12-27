@@ -9,11 +9,13 @@ use Exceptions\{NotExistClassException, NotExistMethodException, NotExistFileExc
 class Route extends Base
 {
     /**
+     * Controller Name
      * @var string
      */
     private string $controllerName;
 
     /**
+     * Action Name
      * @var string
      */
     private string $actionName;
@@ -26,6 +28,7 @@ class Route extends Base
     {
         $this->controllerName = 'main';
         $this->actionName = 'index';
+
         parent::__construct();
     }
 
@@ -33,7 +36,6 @@ class Route extends Base
      * Starting the router, get uri
      * Parse url if path is not empty
      * We check the presence of a controller and if it is not, we return 404
-     *
      */
     public function initialize(): void
     {
@@ -51,7 +53,7 @@ class Route extends Base
             try {
                 if (count($arrRoutes) > 0) {
                     $nameController = $arrRoutes[1] ?? $arrRoutes[0];
-                    $this->validator->checkFileExist(parent::PATH_APPLICATION . '/' . parent::PATH_CONTROLLERS . '/Controller' . ucfirst($nameController) . '.php');
+                    $this->model->validator->checkFileExist(parent::PATH_APPLICATION . '/' . parent::PATH_CONTROLLERS . '/Controller' . ucfirst($nameController) . '.php');
 
                     if (!empty($arrRoutes[1])) {
                         $this->actionName = $arrRoutes[0];
@@ -68,7 +70,7 @@ class Route extends Base
         $controller = '';
 
         try {
-            $this->validator->checkClassExist($controllerName);
+            $this->model->validator->checkClassExist($controllerName);
             $controller = new $controllerName;
         } catch (NotExistClassException $e) {
             self::errorPage404();
@@ -77,7 +79,7 @@ class Route extends Base
         $actionName = 'action' . ucfirst($this->actionName);
 
         try {
-            $this->validator->checkMethodExist($controller, $actionName);
+            $this->model->validator->checkMethodExist($controller, $actionName);
             $controller->$actionName();
         } catch (NotExistMethodException $e) {
             self::errorPage404();

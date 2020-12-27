@@ -68,6 +68,9 @@
 <script src="/js/bootstrap.js"></script>
 <script src="/js/bootstrap.bundle.js"></script>
 <script>
+    /**
+     * Validate the form
+     * */
     (function () {
         'use strict';
         window.addEventListener('load', function () {
@@ -83,15 +86,27 @@
             });
         }, false);
     })();
+
+    /**
+     * On tooltips for element with class or atr
+     * */
     $(function () {
         $('[data-toggle="tooltip"],.tooltip-show').tooltip({'placement': 'bottom'});
     });
+
+    /**
+     * Show alert div with information
+     * */
     function showAlert(message, type) {
         $('.info-block').append('<div class="alert alert-' + type + '" role="alert">' + message + '</div>');
         setTimeout(function () {
             $(".alert").alert('close');
         }, 3000);
     }
+
+    /**
+     * Check data
+     * */
     $(".check-data").on('click', function () {
         event.preventDefault();
         let data = $('.form-generate').serialize();
@@ -104,6 +119,17 @@
                (answer['success'] === true) ? showAlert(answer['message'], 'success') : showAlert(answer['message'], 'danger');
             }
         });
+    });
+
+    /**
+     * Open domains input if selected xml type
+     */
+    $('.type-input-data').on('change', function() {
+        if($(this).val() == 1){
+            $('.new-domains-address').removeClass('d-none');
+        }else{
+            $('.new-domains-address').addClass('d-none');
+        }
     });
 </script>
 </body>

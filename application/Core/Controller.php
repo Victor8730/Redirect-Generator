@@ -29,6 +29,7 @@ class Controller extends Base
             'auto_reload' => true
         ]);
         $this->isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest';
+
         parent::__construct();
     }
 

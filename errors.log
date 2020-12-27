@@ -2,3 +2,4 @@
 2020-10-04 19:43:07 : Script with problem: C:\os\domains\redirect-generator\application\Core\Validator.php | Line with problem: 158 | Method actionExamplesitemaps not exist in controller Controllers\ControllerMain
 2020-10-04 19:44:02 : Script with problem: C:\os\domains\redirect-generator\application\Core\Validator.php | Line with problem: 158 | Method actionExamplesitemaps not exist in controller Controllers\ControllerMain
 2020-10-04 20:28:13 : Script with problem: C:\os\domains\redirect-generator\application\Core\Validator.php | Line with problem: 158 | Method actionExamplesitemaps not exist in controller Controllers\ControllerMain
+2020-12-27 22:56:06 : Script with problem: D:\server20\domains\Redirect-Generator\application\Core\Validator.php Line with problem: 143 | file template 'application/Controllers/ControllerGetDataFromUrl.php' not exist!

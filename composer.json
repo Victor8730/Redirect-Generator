@@ -1,8 +1,7 @@
 {
   "name": "webpagestudio/redirect-generator",
-  "description": "Create 301 redirect from xml site maps",
-  "minimum-stability": "stable",
-  "license": "GPL-3.0-or-later",
+  "description": "Create 301 redirect from xml site maps or csv file",
+  "license": "MIT License",
   "authors": [
     {
       "name": "Victor Galiuzov"
@@ -26,6 +25,7 @@
       "Core\\": "application/Core",
       "Exceptions\\": "application/Exceptions",
       "Controllers\\": "application/Controllers",
+      "Models\\": "application/Models",
       "Tests\\": "application/Tests"
     }
   },
